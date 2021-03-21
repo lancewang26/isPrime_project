@@ -1,0 +1,101 @@
+<script>
+    console.time("execute time");
+  
+
+    var num = prompt("Please given a number");
+
+    //create prime array with only 2 inside
+    var primes = [2];
+    var isPrime
+    
+
+    //run loop start from 3 since prime num 2 already in array
+    //increment set to 2, so less loop 
+    for (i=3; i<=num;i+=2){
+        isPrime = true;
+        
+        //scan for prime number
+        for(n=0;n<primes.length;n++){
+            //prime num can only divisable by 1 and itself 
+            //In other word, if a number is not prime, it should be divisabled by a prime number 
+
+            //if a number is not prime the max possible factor should be the squart root of it self
+            //so break loop if reached, 
+            if(primes[n]*primes[n]>num){
+                break;
+            }
+
+            //try num%2, num%3...... if divisable, then break loop
+            if(i%primes[n]==0){
+                isPrime = false;
+                break;
+            }
+        }
+
+        //if isPrime return true, then add prime number to array
+        if(isPrime==true){
+            primes.push(i);
+        }
+    }
+  /*
+    console.log(primes.pop());
+    console.log(num);
+
+ */ 
+
+    //check if last number in array equal to input num, if yes then is prime num, and order should length of array
+    if(num == primes.pop()){
+        /*
+        document.write(num+' is No.'+(primes.length+)+' prime number');*/
+        console.log(num+' is No.'+(primes.length+1)+' prime number');
+    }else{
+        /*
+        document.write(num+' is not a prime number');*/
+        console.log(num+' is not a prime number');
+    }
+
+
+    console.timeEnd("execute time");
+
+
+
+    /*check if input is a promt use regex match
+      first covert num to repeat character -> e,g    3 = 111, 4=1111, 5=11111 (just repeat character it can be FFFFF, 22222 dont has to be 1 here,)
+      first part of regex ^.?$ checked if the length is 1 or 0 if yes then is not prime
+      second part of regex (..+?)\1+$ check if length can be Divisible by 2, then 3,4,5,6...... if yes then is not prime
+    */
+
+    /*
+        for(i = 0; i <=num; i++){
+
+            var ref = order
+
+            if(!('1'.repeat(i).match(/^.?$|^(..+?)\1+$/)) == true){
+            order ++;
+            }   
+
+            if(i == num){
+                if(order > ref){
+                    switch(order){
+                        case 1:
+                            order = order + 'st';
+                            break;
+                        case 2:
+                            order = order + 'nd';
+                            break;
+                        case 3:
+                            order = order + 'rd';
+                            break;
+                        default:
+                            order = order + 'th';
+                          
+                    }
+                    document.write(num+'is ' + order + ' prime number');
+                }else{
+                    document.write(num+' is not a prime number');
+                }
+            }
+        }
+    */
+
+</script>
